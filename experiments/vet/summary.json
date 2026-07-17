@@ -1,0 +1,94 @@
+{
+  "files": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/error_scaffold.rs",
+      "total_items": 7,
+      "non_test_items": 6,
+      "emitted": 0,
+      "gaps": 7,
+      "expressible_pct": 0.0,
+      "category_counts": {
+        "GenericBound": 3,
+        "Import": 1,
+        "MacroDef": 1,
+        "TestItem": 1,
+        "Trait": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "total_items": 17,
+      "non_test_items": 15,
+      "emitted": 1,
+      "gaps": 18,
+      "expressible_pct": 6.666666666666667,
+      "category_counts": {
+        "Import": 7,
+        "InnerAttr": 1,
+        "ModuleDecl": 1,
+        "Other": 7,
+        "Struct": 1,
+        "TestItem": 1
+      }
+    }
+  ],
+  "totals": {
+    "total_items": 24,
+    "non_test_items": 21,
+    "emitted": 1,
+    "gaps": 25,
+    "expressible_pct": 4.761904761904762,
+    "category_counts": {
+      "GenericBound": 3,
+      "Import": 8,
+      "InnerAttr": 1,
+      "MacroDef": 1,
+      "ModuleDecl": 1,
+      "Other": 7,
+      "Struct": 1,
+      "TestItem": 2,
+      "Trait": 1
+    }
+  },
+  "remap": {
+    "phylum": {
+      "source_crate": "mycelium-std-core",
+      "target_phylum": "std.core"
+    },
+    "nodules": [
+      {
+        "target_nodule": "std.core.error_scaffold",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/error_scaffold.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "std.core",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      }
+    ],
+    "idiom_choices": []
+  }
+}

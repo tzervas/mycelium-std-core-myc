@@ -1,0 +1,77 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/error_scaffold.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/error_scaffold.rs",
+      "line": 44,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use core :: fmt ;",
+      "reason": "`use core::fmt` — `core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/error_scaffold.rs",
+      "line": 46,
+      "col": 1,
+      "category": "Trait",
+      "rust_construct": "Trait",
+      "snippet": "# [doc = \" Marker super-trait: *this value is an honest stdlib error*.\"] # [doc = \"\"] # [doc = \" A type is an [`StdError`] iff it is `Debug + Display + std::error::Error` — i.e. it can be\"] # [doc = \" shown to a human (`Display`), inspected by a developer (`Debug`), and chained as a cause\"] # [doc = \" (`std::error::Error::source`). The blanket impl below means **every** type already meeting\"] # [doc = \" that bound *is* an `StdError` with no per-type opt-in; the trait exists to give the\"] # [doc = \" contract a *name* the rest of the library (and tests) can bound on:\"] # [doc = \"\"] # [doc = \" ```\"] # [doc = \" use mycelium_std_core::error_scaffold::StdError;\"] # [doc = \" fn surface<E: StdError>(e: &E) -> String { e.to_string() }\"] # [doc = \" ```\"] # [doc = \"\"] # [doc = \" # Contract named (not enforced-by-types — RFC-0016 §4.1)\"] # [doc = \" - **C1 / G2 (never-silent).** An `StdError` is a *value*: producing one is the explicit,\"] # [doc = \"   non-sentinel signal that an operation refused. The scaffold cannot enforce that a crate\"] # [doc = \"   *returns* it rather than clamping — that is each op's obligation — but it gives the\"] # [doc = \"   refusal a uniform, honest type.\"] # [doc = \" - **C3 (EXPLAIN / no black box).** `Display` carries the human-legible *why*; `source()`\"] # [doc = \"   carries the machine-walkable cause chain. An `Err` is as inspectable as an `Ok`.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` (a marker with a trivial blanket impl — no behaviour of its own).\"] pub trait StdError : fmt :: Debug + fmt :: Display + std :: error :: Error { }",
+      "reason": "trait `StdError` has supertrait bound(s) — trait_item grammar has no supertrait syntax (`'trait' Ident type_params? '{' ...`)",
+      "item_name": "StdError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/error_scaffold.rs",
+      "line": 72,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "impl < T : ? Sized + fmt :: Debug + fmt :: Display + std :: error :: Error > StdError for T { }",
+      "reason": "impl-level generic parameter(s) on a *trait-instance* impl (`impl<..> Trait for ..`) have no confirmed mapping yet — DN-130 (parametric trait-instance heads + coherence) is the unbuilt scope for that case; DN-131 authorizes only the inherent-impl slot",
+      "item_name": "T"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/error_scaffold.rs",
+      "line": 74,
+      "col": 1,
+      "category": "MacroDef",
+      "rust_construct": "MacroDef",
+      "snippet": "# [doc = \" Emit the mechanical `impl std::error::Error` marker for an error type, optionally with a\"] # [doc = \" `source()` delegate — and **nothing else**.\"] # [doc = \"\"] # [doc = \" This is the boilerplate every `mycelium-std-*/src/error.rs` repeats verbatim. The caller\"] # [doc = \" keeps its own `#[derive(Debug, …)]` and its own hand-written `impl Display` (the\"] # [doc = \" domain-specific message is *intentionally* not automated — DN-17 §3/§5); the macro only\"] # [doc = \" removes the empty / mechanically-identical `impl std::error::Error`.\"] # [doc = \"\"] # [doc = \" # Forms\"] # [doc = \" ```text\"] # [doc = \" impl_std_error!(MyError);                        // -> impl std::error::Error for MyError {}\"] # [doc = \" impl_std_error!(MyError<T>, generics = [T: Debug], where = [T: Debug]);  // generic\"] # [doc = \" impl_std_error!(MyError, source = |this| { match this { … } });          // source() delegate\"] # [doc = \" ```\"] # [doc = \"\"] # [doc = \" The `source = |this| …` arm receives `&self` as `this` and must return\"] # [doc = \" `Option<&(dyn std::error::Error + 'static)>` — exactly the body the caller would write.\"] # [doc = \"\"] # [doc = \" # Why a macro and not a `#[derive]`\"] # [doc = \" KC-3 / KISS: a `proc-macro` would add a build-time dependency and a separate crate for a\"] # [doc = \" two-line impl. A `macro_rules!` keeps the dependency floor at zero and the expansion\"] # [doc = \" trivially auditable (`cargo expand` shows the exact impl). It is **opt-in**: a crate may\"] # [doc = \" keep writing the impl by hand and nothing breaks.\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` — expands to the precise impl the caller would otherwise write.\"] # [macro_export] macro_rules ! impl_std_error { ($ ty : ty) => { impl :: std :: error :: Error for $ ty { } } ; ($ ty : ty , generics = [$ ($ g : tt) *] $ (, where = [$ ($ w : tt) *]) ? $ (,) ?) => { impl <$ ($ g) *> :: std :: error :: Error for $ ty $ (where $ ($ w) *) ? { } } ; ($ ty : ty , source = |$ this : ident | $ body : block $ (,) ?) => { impl :: std :: error :: Error for $ ty { fn source (& self) -> :: core :: option :: Option <& (dyn :: std :: error :: Error + 'static) > { let $ this = self ; $ body } } } ; }",
+      "reason": "`macro_rules!` definition — no macro system in this grammar",
+      "item_name": "impl_std_error"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/error_scaffold.rs",
+      "line": 123,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" Compile-and-run assertion that `e` satisfies the `std::error::Error` (and thus [`StdError`])\"] # [doc = \" contract — the consolidation of the `*_is_std_error` test every error file repeats.\"] # [doc = \"\"] # [doc = \" It coerces `e` to `&dyn std::error::Error` (the compile-time half, exactly the existing\"] # [doc = \" `let _: &dyn std::error::Error = &e;` line) and exercises `Display` + `Debug` once (the\"] # [doc = \" run-time half — that neither panics and `Display` is non-empty), then returns the rendered\"] # [doc = \" `Display` string so a caller can fold the message check in the same call.\"] # [doc = \"\"] # [doc = \" ```\"] # [doc = \" # #[cfg(any(test, feature = \\\"test-support\\\"))]\"] # [doc = \" # {\"] # [doc = \" use mycelium_std_core::error_scaffold::assert_is_std_error;\"] # [doc = \" #[derive(Debug)]\"] # [doc = \" struct E;\"] # [doc = \" impl std::fmt::Display for E {\"] # [doc = \"     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result { f.write_str(\\\"boom\\\") }\"] # [doc = \" }\"] # [doc = \" impl std::error::Error for E {}\"] # [doc = \" let shown = assert_is_std_error(&E);\"] # [doc = \" assert_eq!(shown, \\\"boom\\\");\"] # [doc = \" # }\"] # [doc = \" ```\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` — a total predicate over a borrowed error; no approximation.\"] # [cfg (any (test , feature = \"test-support\"))] pub fn assert_is_std_error < E : StdError > (e : & E) -> String { let dynamic : & dyn std :: error :: Error = e ; let _ = format ! (\"{dynamic:?}\") ; let shown = dynamic . to_string () ; assert ! (! shown . is_empty () , \"an StdError must render a non-empty Display message (C3 / EXPLAIN): {dynamic:?}\") ; shown }",
+      "reason": "type parameter `E` carries a bound — type_params/fn generics are bare identifiers only in this grammar fragment",
+      "item_name": "assert_is_std_error"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/error_scaffold.rs",
+      "line": 163,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" Assert that an error's `Display` contains every `needle` — the consolidation of the\"] # [doc = \" near-identical `*_display_includes_*_fields` guard tests (each currently a hand-written\"] # [doc = \" run of `assert!(s.contains(..))`).\"] # [doc = \"\"] # [doc = \" Panics with a message naming the missing needle and the full rendered error, so a failing\"] # [doc = \" guard points straight at the dropped field.\"] # [doc = \"\"] # [doc = \" ```\"] # [doc = \" # #[cfg(any(test, feature = \\\"test-support\\\"))]\"] # [doc = \" # {\"] # [doc = \" use mycelium_std_core::error_scaffold::assert_display_contains;\"] # [doc = \" #[derive(Debug)]\"] # [doc = \" struct E { index: usize, len: usize }\"] # [doc = \" impl std::fmt::Display for E {\"] # [doc = \"     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {\"] # [doc = \"         write!(f, \\\"oob index={} len={}\\\", self.index, self.len)\"] # [doc = \"     }\"] # [doc = \" }\"] # [doc = \" impl std::error::Error for E {}\"] # [doc = \" assert_display_contains(&E { index: 5, len: 3 }, &[\\\"5\\\", \\\"3\\\"]);\"] # [doc = \" # }\"] # [doc = \" ```\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Exact` — a total substring predicate; no approximation.\"] # [cfg (any (test , feature = \"test-support\"))] pub fn assert_display_contains < E : StdError > (e : & E , needles : & [& str]) { let shown = e . to_string () ; for needle in needles { assert ! (shown . contains (needle) , \"Display of {e:?} must contain {needle:?} (field would be silently dropped); \\\n             got {shown:?}\") ; } }",
+      "reason": "type parameter `E` carries a bound — type_params/fn generics are bare identifiers only in this grammar fragment",
+      "item_name": "assert_display_contains"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/error_scaffold.rs",
+      "line": 199,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; # [derive (Debug , Clone , PartialEq , Eq)] enum SampleErr { IndexOob { index : usize , len : usize } , Refused { why : String } , } impl fmt :: Display for SampleErr { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { match self { SampleErr :: IndexOob { index , len } => { write ! (f , \"index out of bounds (index={index}, len={len})\") } SampleErr :: Refused { why } => write ! (f , \"refused: {why}\") , } } } impl_std_error ! (SampleErr) ; # [derive (Debug)] struct Wrapper { inner : SampleErr , } impl fmt :: Display for Wrapper { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { write ! (f , \"wrapper: {}\" , self . inner) } } impl_std_error ! (Wrapper , source = | this | { Some (& this . inner) }) ; # [derive (Debug)] struct Narrowed < T : fmt :: Debug > { rejected : T , } impl < T : fmt :: Debug > fmt :: Display for Narrowed < T > { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { write ! (f , \"not representable: {:?}\" , self . rejected) } } impl_std_error ! (Narrowed < T >, generics = [T : fmt :: Debug] , where = [T : fmt :: Debug]) ; # [doc = \" The blanket impl makes any `Debug + Display + Error` type an `StdError` — no opt-in.\"] # [doc = \" Guard: removing the blanket impl makes this fail to compile.\"] # [test] fn blanket_impl_covers_conforming_types () { fn require_std_error < E : StdError > (_ : & E) { } require_std_error (& SampleErr :: IndexOob { index : 1 , len : 0 }) ; require_std_error (& Wrapper { inner : SampleErr :: Refused { why : \"x\" . into () } , }) ; require_std_error (& Narrowed { rejected : 7u8 }) ; } # [doc = \" The plain macro form yields a working `std::error::Error` whose `source()` is `None`.\"] # [doc = \" Guard: a macro that emitted a non-trivial `source()` here would fail.\"] # [test] fn plain_macro_yields_std_error_without_source () { let e = SampleErr :: Refused { why : \"consumed\" . into () , } ; let dynamic : & dyn std :: error :: Error = & e ; assert ! (std :: error :: Error :: source (dynamic) . is_none () , \"plain impl_std_error! must not invent a source()\") ; } # [doc = \" The `source =` macro form chains to the inner error (the io/recover pattern).\"] # [doc = \" Guard: dropping the source arm makes `source()` return None and this fails.\"] # [test] fn source_macro_form_chains_cause () { let w = Wrapper { inner : SampleErr :: IndexOob { index : 9 , len : 3 } , } ; let src = std :: error :: Error :: source (& w) . expect (\"source() must chain to inner\") ; assert ! (src . to_string () . contains (\"index out of bounds\") , \"source() must expose the inner error's Display; got {src}\") ; } # [doc = \" `assert_is_std_error` returns the rendered Display and rejects an empty message.\"] # [test] fn assert_is_std_error_returns_display () { let shown = assert_is_std_error (& SampleErr :: IndexOob { index : 5 , len : 3 }) ; assert ! (shown . contains (\"index out of bounds\")) ; } # [doc = \" `assert_display_contains` passes when all needles are present.\"] # [test] fn assert_display_contains_accepts_present_needles () { assert_display_contains (& SampleErr :: IndexOob { index : 5 , len : 3 } , & [\"index out of bounds\" , \"5\" , \"3\"] ,) ; } # [doc = \" `assert_display_contains` panics when a needle is missing (a dropped field).\"] # [doc = \" Guard: this is the failure mode the helper exists to catch.\"] # [test] # [should_panic (expected = \"must contain\")] fn assert_display_contains_rejects_missing_needle () { assert_display_contains (& SampleErr :: Refused { why : \"x\" . into () } , & [\"NOT-PRESENT\"]) ; } # [doc = \" The macro does not alter the hand-written Display message in any way (behaviour-\"] # [doc = \" preserving — the whole point). Guard: any message rewrite by the macro fails here.\"] # [test] fn macro_preserves_handwritten_display_verbatim () { let e = SampleErr :: IndexOob { index : 2 , len : 1 } ; assert_eq ! (e . to_string () , \"index out of bounds (index=2, len=1)\") ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 7
+}

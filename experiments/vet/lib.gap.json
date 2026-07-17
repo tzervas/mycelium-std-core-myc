@@ -1,0 +1,189 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+  "emitted_items": [
+    "co-emit:GuaranteeStrength"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 1,
+      "col": 1,
+      "category": "InnerAttr",
+      "rust_construct": "InnerAttr",
+      "snippet": "# ! [forbid (unsafe_code)]",
+      "reason": "crate/file-level inner attributes (#![...]) are not transpiled (no nodule-header equivalent for these Rust-specific directives)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 69,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod error_scaffold ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "error_scaffold"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 72,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use mycelium_core :: bound :: { Bound , BoundBasis , BoundKind , NormKind } ;",
+      "reason": "`use mycelium_core.bound::Bound` — `mycelium_core.bound` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.bound::BoundBasis` — `mycelium_core.bound` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.bound::BoundKind` — `mycelium_core.bound` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.bound::NormKind` — `mycelium_core.bound` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 73,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use mycelium_core :: datum :: { CoreValue , Datum } ;",
+      "reason": "`use mycelium_core.datum::CoreValue` — `mycelium_core.datum` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.datum::Datum` — `mycelium_core.datum` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 74,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use mycelium_core :: guarantee :: GuaranteeStrength ;",
+      "reason": "`use mycelium_core.guarantee::GuaranteeStrength` — `mycelium_core.guarantee` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 75,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use mycelium_core :: id :: ContentHash ;",
+      "reason": "`use mycelium_core.id::ContentHash` — `mycelium_core.id` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 76,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use mycelium_core :: meta :: { Meta , PackScheme , PhysicalLayout , Provenance , SparsityObs } ;",
+      "reason": "`use mycelium_core.meta::Meta` — `mycelium_core.meta` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.meta::PackScheme` — `mycelium_core.meta` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.meta::PhysicalLayout` — `mycelium_core.meta` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.meta::Provenance` — `mycelium_core.meta` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.meta::SparsityObs` — `mycelium_core.meta` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 77,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use mycelium_core :: repr :: { Repr , ScalarKind , SparsityClass } ;",
+      "reason": "`use mycelium_core.repr::Repr` — `mycelium_core.repr` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.repr::ScalarKind` — `mycelium_core.repr` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.repr::SparsityClass` — `mycelium_core.repr` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 78,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use mycelium_core :: value :: { Payload , Trit , Value } ;",
+      "reason": "`use mycelium_core.value::Payload` — `mycelium_core.value` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.value::Trit` — `mycelium_core.value` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core.value::Value` — `mycelium_core.value` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 80,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The curated default prelude (spec §3 / FLAG Q1). `use mycelium_std_core::prelude::*;`\"] # [doc = \" brings the value model, the lattice tags, and the query surface into scope. The\"] # [doc = \" final membership is a ratification call (RFC-0016 §8-Q3); this is the proposed\"] # [doc = \" minimal set, kept consistent across the module specs by the orchestrator.\"] pub mod prelude { pub use super :: { bound_of , guarantee_of , meta_of , provenance_of , repr_of , Bound , BoundBasis , BoundKind , CoreValue , Datum , GuaranteeStrength , Meta , NormKind , Payload , Provenance , Repr , Trit , Value , } ; }",
+      "reason": "inline `mod foo { … }` — Mycelium's nodule-per-file model has no nested-module construct in this grammar fragment; the module body is dropped (a real coverage gap, not file-linkage — its inner items could be flattened in a later phase)",
+      "item_name": "prelude"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 107,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The representation of `v`, or `None` if `v` is algebraic data (no `Repr`).\"] # [must_use] pub fn repr_of (v : & CoreValue) -> Option < & Repr > { v . as_repr () . map (Value :: repr) }",
+      "reason": "method call `.map(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__map` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `map(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "repr_of"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 113,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The metadata of `v`, or `None` if `v` is algebraic data (no `Meta`).\"] # [must_use] pub fn meta_of (v : & CoreValue) -> Option < & Meta > { v . as_repr () . map (Value :: meta) }",
+      "reason": "method call `.map(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__map` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `map(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "meta_of"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 119,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The guarantee tag of `v` (total — every value carries one).\"] # [must_use] pub fn guarantee_of (v : & CoreValue) -> GuaranteeStrength { v . guarantee () }",
+      "reason": "method call `.guarantee(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__guarantee` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `guarantee(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "guarantee_of"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 125,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The bound attached to `v`, or `None` when there is no metadata or no bound.\"] # [must_use] pub fn bound_of (v : & CoreValue) -> Option < & Bound > { meta_of (v) . and_then (Meta :: bound) }",
+      "reason": "method call `.and_then(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__and_then` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `and_then(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "bound_of"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 131,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The provenance of `v`, or `None` if `v` is algebraic data (no `Meta`).\"] # [must_use] pub fn provenance_of (v : & CoreValue) -> Option < & Provenance > { meta_of (v) . map (Meta :: provenance) }",
+      "reason": "method call `.map(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__map` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `map(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "provenance_of"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 139,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" One row of the module guarantee matrix (RFC-0016 §4.5): an exported item, its\"] # [doc = \" honest guarantee tag, whether it is fallible (and the explicit error shape), its\"] # [doc = \" declared effects, and whether it exposes an EXPLAIN artifact.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct GuaranteeRow { # [doc = \" The exported op / item name.\"] pub op : & 'static str , # [doc = \" Its honest guarantee tag on the lattice `Exact ⊐ Proven ⊐ Empirical ⊐ Declared`.\"] pub tag : GuaranteeStrength , # [doc = \" The explicit fallibility: `\\\"total\\\"`, or the `Option`/`Result` shape returned.\"] pub fallibility : & 'static str , # [doc = \" Declared effects (`\\\"none\\\"` for this pure re-export surface).\"] pub effects : & 'static str , # [doc = \" Whether the item surfaces an inspectable EXPLAIN artifact.\"] pub explainable : bool , }",
+      "reason": "struct `GuaranteeRow` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "GuaranteeRow"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 156,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The `std.core` guarantee matrix (spec §4). Every row is `Exact` and effect-free:\"] # [doc = \" `std.core` introduces no operation that selects, converts, or approximates, so the\"] # [doc = \" honest tag for each is `Exact` (RFC-0016 §4.1 C2) — the honest *floor*, not an\"] # [doc = \" upgrade. The query rows that surface a downstream value's own tag/bound/provenance\"] # [doc = \" are marked EXPLAIN-able (they are the inspection window, RFC-0001 §4.8).\"] pub const GUARANTEE_MATRIX : & [GuaranteeRow] = & [GuaranteeRow { op : \"Value/Repr/Meta (type re-exports)\" , tag : GuaranteeStrength :: Exact , fallibility : \"total\" , effects : \"none\" , explainable : false , } , GuaranteeRow { op : \"CoreValue/Datum (type re-exports)\" , tag : GuaranteeStrength :: Exact , fallibility : \"total\" , effects : \"none\" , explainable : false , } , GuaranteeRow { op : \"GuaranteeStrength (lattice tags)\" , tag : GuaranteeStrength :: Exact , fallibility : \"total\" , effects : \"none\" , explainable : false , } , GuaranteeRow { op : \"Bound/BoundBasis (type re-exports)\" , tag : GuaranteeStrength :: Exact , fallibility : \"total\" , effects : \"none\" , explainable : false , } , GuaranteeRow { op : \"repr_of\" , tag : GuaranteeStrength :: Exact , fallibility : \"Option<&Repr> (None for algebraic data)\" , effects : \"none\" , explainable : false , } , GuaranteeRow { op : \"meta_of\" , tag : GuaranteeStrength :: Exact , fallibility : \"Option<&Meta> (None for algebraic data)\" , effects : \"none\" , explainable : false , } , GuaranteeRow { op : \"guarantee_of\" , tag : GuaranteeStrength :: Exact , fallibility : \"total\" , effects : \"none\" , explainable : true , } , GuaranteeRow { op : \"bound_of\" , tag : GuaranteeStrength :: Exact , fallibility : \"Option<&Bound> (None when no meta/bound)\" , effects : \"none\" , explainable : true , } , GuaranteeRow { op : \"provenance_of\" , tag : GuaranteeStrength :: Exact , fallibility : \"Option<&Provenance> (None for algebraic data)\" , effects : \"none\" , explainable : true , } ,] ;",
+      "reason": "top-level `const GUARANTEE_MATRIX` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "GUARANTEE_MATRIX"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-std-core/src/lib.rs",
+      "line": 227,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests ;",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 17
+}

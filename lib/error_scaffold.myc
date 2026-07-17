@@ -1,0 +1,49 @@
+// nodule: std.core.error_scaffold
+// `std.core::error_scaffold` — the shared, non-coupling scaffold for stdlib error
+// types (M-535, E5-1; DN-17 §2.4/§4 P3).
+//
+// # What this is (and deliberately is *not*)
+// Every `mycelium-std-*` crate hand-rolls, per error type, the *same three mechanical
+// pieces*: `#[derive(Debug, …)]`, an `impl std::error::Error` marker (occasionally with a
+// `source()` delegate), and a `*_is_std_error` compile-time test. DN-17 §2.4 measured
+// ~600 LOC of this `Display`/`Error`/test boilerplate as structurally repeated. This
+// module factors out **only the mechanical part**:
+//
+// - [`StdError`] — a *marker* super-trait (`Debug + Display + std::error::Error`) that
+//   *names* the per-op never-silent / EXPLAIN contract (RFC-0016 §4.1 C1/C3) so "this
+//   value is an honest stdlib error" is inspectable and bound-checkable, with a blanket
+//   impl so no type opts in by hand.
+// - [`impl_std_error!`](crate::impl_std_error) — a tiny declarative macro that emits the boilerplate
+//   `impl std::error::Error for T {}` (optionally with a `source()` arm), leaving the
+//   **hand-written, domain-specific `Display` message in the caller** — untouched.
+// - `assert_is_std_error` / `assert_display_contains` — the test helpers DN-17 §4
+//   blesses as the *safe* consolidation (the `*_is_std_error` + `*_display_includes_*`
+//   duplication), gated behind `#[cfg(any(test, feature = "test-support"))]` (so they are
+//   absent — and these names unlinkable — in a default doc build).
+//
+// ## What it does NOT do (VR-5 / DN-17 §5 — non-coupling by construction)
+// It never generates, alters, or inspects a `Display` *message*; never adds, removes, or
+// renames an error variant; never changes a `#[derive]`; and never touches a per-module
+// guarantee tag or the per-module guarantee matrix (RFC-0016 §4.5 — intentionally
+// per-module, DN-17 §3). A refactor through this scaffold is **behaviour-preserving**: the
+// only code it emits is the empty `Error` marker and an optional `source()` delegate, both
+// of which are byte-identical everywhere they appear today. The per-module *honesty
+// contracts stay decoupled* — this is the line DN-17 §5 draws, and the scaffold respects it.
+//
+// # Guarantee tag
+// **`Exact`** — the scaffold is pure, total, allocation-free glue: [`StdError`] is a marker
+// with a trivial blanket impl, [`impl_std_error!`](crate::impl_std_error) expands to the exact trait impl the
+// caller would otherwise write, and the assert helpers are total predicates over a borrowed
+// error. No approximation, no selection, no representation choice is introduced (C5: it adds
+// no trusted code — it consumes `std::error::Error`).
+//
+// # Grounding
+// DN-17 §2.4 (the survey), §4 P3 (test-helper = safe; macro = post-ratification), §5 (the
+// non-coupling caveat); RFC-0016 §4.1 C1 (never-silent), C3 (EXPLAIN / no black box), C5
+// (above the kernel); G2 (never-silent); VR-5 (a refactor never changes a guarantee).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule std.core.error_scaffold;
+
+
